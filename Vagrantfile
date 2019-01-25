@@ -37,4 +37,20 @@ Vagrant.configure("2") do |config|
 			#ansible.tags = "execute"
 		end
 	end
+   config.vm.define "app1" do |app1|
+		app1.vm.hostname = "app1.local"
+		app1.vm.network "private_network",ip:"1.2.3.8"
+		app1.vm.provision "ansible" do |ansible|
+			ansible.playbook = "roles/app.yml"
+			#ansible.tags = "execute"
+		end
+	end
+   config.vm.define "app2" do |app2|
+		app2.vm.hostname = "app2.local"
+		app2.vm.network "private_network",ip:"1.2.3.9"
+		app2.vm.provision "ansible" do |ansible|
+			ansible.playbook = "roles/app.yml"
+			#ansible.tags = "execute"
+		end
+	end
 end
