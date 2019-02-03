@@ -1,6 +1,5 @@
 --- # CICD Pipline Project
 - name: App Servers 
-  hosts: app-servers
   become: yes
   gather_facts: no
 

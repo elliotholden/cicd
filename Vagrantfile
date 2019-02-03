@@ -1,11 +1,11 @@
 Vagrant.configure("2") do |config|
 	config.vm.box = "bento/centos-7.6"
-	config.vm.provision "ansible" do |ansible|
-		ansible.playbook = "roles/app.yml"
-		ansible.groups = {
-			"app-servers" => ["app1","app2"]
-		}
-	end
+	#config.vm.provision "ansible" do |ansible|
+		#ansible.playbook = "roles/app.yml"
+		#ansible.groups = {
+		#"app-servers" => ["app1","app2"]
+		#}
+	#end
 	config.vm.define "jenkins" do |jenkins|
 		jenkins.vm.hostname = "jenkins-server.local"
 		jenkins.vm.network "private_network", ip: "1.2.3.4"
@@ -46,17 +46,17 @@ Vagrant.configure("2") do |config|
    config.vm.define "app1" do |app1|
 		app1.vm.hostname = "app1.local"
 		app1.vm.network "private_network",ip:"1.2.3.8"
-		#app1.vm.provision "ansible" do |ansible|
-		#	ansible.playbook = "roles/app.yml"
-		#	#ansible.tags = "execute"
-		#end
+		app1.vm.provision "ansible" do |ansible|
+			ansible.playbook = "roles/app.yml"
+			#ansible.tags = "execute"
+		end
 	end
    config.vm.define "app2" do |app2|
 		app2.vm.hostname = "app2.local"
 		app2.vm.network "private_network",ip:"1.2.3.9"
-		#app2.vm.provision "ansible" do |ansible|
-		#	ansible.playbook = "roles/app.yml"
-		#	#ansible.tags = "execute"
-		#end
+		app2.vm.provision "ansible" do |ansible|
+			ansible.playbook = "roles/app.yml"
+			#ansible.tags = "execute"
+		end
 	end
 end
